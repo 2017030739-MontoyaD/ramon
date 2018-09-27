@@ -1,150 +1,166 @@
-package Segundo;
-import java.util.Scanner;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package primero;
 
-public class Boleto 
-{
-    public static void main(String[] args) 
-    {
-        Scanner in = new Scanner (System.in);
-        Scanner nombre = new Scanner (System.in);
-        int respuesta;
-        int dia,mes,año,edad;
-        int opcion;
-        int numeroBoleto=0;
-        float costo = 0;
-        String nombreCliente,tipoBoleto = null,destino;
-        CostoBoleto nuevoCliente = new CostoBoleto();     
-        do
-        {
-            System.out.println("Central de autobuses Mazatlán");
-            System.out.println("-------------------------------\n");
-            System.out.println("Elija una opción:\n");
-            System.out.println("[1] Nuevo viaje ");
-            System.out.println("[2] Modificar viaje");
-            System.out.println("[3] Consulta viaje");
-            System.out.println("[4] Salir");
-            System.out.println("\n\nRespuesta: ");
-            opcion=in.nextInt();
-            
-            switch(opcion)
-            {
-                case 1:
-                    
-                    numeroBoleto++;
-                    
-                    do
-                    {
-                        System.out.println("\nNuevo viaje");
-                        System.out.println("--------------------------");
-                        System.out.println("¿Cuál es su nombre?");
-                        nombreCliente = nombre.nextLine();
-
-                        System.out.println("¿Cuál es su edad?");
-                        edad = in.nextInt();
-
-                        System.out.println("¿A dónde desea ir?");
-                        destino = in.next();
-
-                        System.out.println("Digite la fecha de su viaje");
-                        System.out.println("Dia: ");
-                        dia = in.nextInt();
-                        System.out.println("Mes: ");
-                        mes = in.nextInt();
-                        System.out.println("Año: ");
-                        año = in.nextInt();
-                        System.out.println("Seleccione el tipo de boleto que desee\n");
-                        System.out.println("[1] Económico");
-                        System.out.println("[2] Premium \nRespuesta:");
-                        respuesta = in.nextInt();
-
-                        nuevoCliente.setEdad(edad);
-                        nuevoCliente.setAño(año);
-                        nuevoCliente.setCosto(costo);
-                        nuevoCliente.setDestino(destino);
-                        nuevoCliente.setDia(dia);
-                        nuevoCliente.setMes(mes);
-                        nuevoCliente.setNombreCliente(nombreCliente);
-                        nuevoCliente.setNumeroBoleto(numeroBoleto);
-                        nuevoCliente.setTipoBoleto(tipoBoleto);
-
-                        nuevoCliente.determinaTipoBoleto(respuesta);
-                        System.out.println("¿Son estos datos correctos?\nDatos del cliente\n"+nuevoCliente.datosCompra()+"\nFecha: "+nuevoCliente.fechaConFormato());
-                        System.out.println("\nDatos de la compra\n"+nuevoCliente.pago());
-                        System.out.println("\n1) Si  2) No\nRespuesta: ");
-                        respuesta = in.nextInt();
-                    }while(respuesta !=1);
-            
-                    break;
-                case 2:
-                    
-                    do
-                    {
-                        System.out.println("Modificar viaje");
-                        System.out.println("\n-------------------");
-                        System.out.println("\nDatos del cliente\n" + nuevoCliente.datosCompra()+"\nFecha: " + nuevoCliente.fechaConFormato());
-                        System.out.println("\nDatos de la compra\n"+nuevoCliente.pago());
-                        System.out.println("\n¿Está seguro que desea modificar?\n[1] Si   [2] No\nRespuesta:");
-                        respuesta = in.nextInt();
-                        
-                        switch(respuesta)
-                        {
-                            case 1:
-                                
-                                System.out.println("¿Cuál es su nombre?");
-                                nombreCliente = nombre.nextLine();
-
-                                System.out.println("¿Cuál es su edad?");
-                                edad = in.nextInt();
-
-                                System.out.println("¿A dónde desea ir?");
-                                destino = in.next();
-
-                                System.out.println("Digite la fecha de su viaje");
-                                System.out.println("Dia: ");
-                                dia = in.nextInt();
-                                System.out.println("Mes: ");
-                                mes = in.nextInt();
-                                System.out.println("Año: ");
-                                año = in.nextInt();
-                                System.out.println("Seleccione el tipo de boleto que desee\n");
-                                System.out.println("[1] Económico");
-                                System.out.println("[2] Premium \nRespuesta:");
-                                respuesta = in.nextInt();
-
-                                nuevoCliente.setEdad(edad);
-                                nuevoCliente.setAño(año);
-                                nuevoCliente.setCosto(costo);
-                                nuevoCliente.setDestino(destino);
-                                nuevoCliente.setDia(dia);
-                                nuevoCliente.setMes(mes);
-                                nuevoCliente.setNombreCliente(nombreCliente);
-                                nuevoCliente.setNumeroBoleto(numeroBoleto);
-                                nuevoCliente.setTipoBoleto(tipoBoleto);
-
-                                nuevoCliente.determinaTipoBoleto(respuesta);
-                                break;
-                            case 2:
-                                System.out.println("Regresando al menú principal...");
-                                respuesta = 2;
-                                break;
-                            default:
-                                System.out.println("Elija una opción válida");
-                                break;                
-                        }
-                    }while(respuesta !=2);
-                    break;
-                
-                case 3:
-                    System.out.println("Consulta viaje");
-                    System.out.println("\n-------------------");
-                    System.out.println("\nDatos del cliente\n" + nuevoCliente.datosCompra()+"\nFecha: " + nuevoCliente.fechaConFormato());
-                    System.out.println("\nDatos de la compra\n"+nuevoCliente.pago());
-                    break;
-                default:
-                    System.out.println("Elija una opción válida");
-                    break;
-            }
-           
-        }while(opcion!=4);
+/**
+ *
+ * @author software 9
+ */
+public class Boleto {
+    private int numeroBoleto;
+    private String nombreCliente;
+    private float precio;
+    private int tipoBoleto;
+    private String fecha;
+    private String destino;
+    
+    public Boleto(){ //Constructor por omisión
+        this.numeroBoleto=123;
+        this.nombreCliente="José López";
+        this.precio=950.00F;
+        this.tipoBoleto=1;
+        this.fecha="04/10/2017";
+        this.destino="Hermosillo, Sonora";
     }
+
+    public Boleto(int nb, String nc, float p, int tp, String f, String d){ //Constructor con argumentos
+        this.numeroBoleto=nb;
+        this.nombreCliente=nc;
+        this.precio=p;
+        this.tipoBoleto=tp;
+        this.fecha=f;
+        this.destino=d;
+    }
+
+    public Boleto(Boleto otro){ //Constructor copia
+        this.numeroBoleto = otro.numeroBoleto;
+        this.nombreCliente = otro.nombreCliente;
+        this.precio = otro.precio;
+        this.tipoBoleto = otro.tipoBoleto;
+        this.fecha = otro.fecha;
+        this.destino = otro.destino;
+    }
+
+    /**
+     * @return the numeroBoleto
+     */
+    public int getNumeroBoleto() {
+        return numeroBoleto;
+    }
+
+    /**
+     * @param numeroBoleto the numeroBoleto to set
+     */
+    public void setNumeroBoleto(int numeroBoleto) {
+        this.numeroBoleto = numeroBoleto;
+    }
+
+    /**
+     * @return the nombreCliente
+     */
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    /**
+     * @param nombreCliente the nombreCliente to set
+     */
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    /**
+     * @return the precio
+     */
+    public float getPrecio() {
+        return precio;
+    }
+
+    /**
+     * @param precio the precio to set
+     */
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
+    /**
+     * @return the tipoBoleto
+     */
+    public int getTipoBoleto() {
+        return tipoBoleto;
+    }
+
+    /**
+     * @param tipoBoleto the tipoBoleto to set
+     */
+    public void setTipoBoleto(int tipoBoleto) {
+        this.tipoBoleto = tipoBoleto;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public String getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the destino
+     */
+    public String getDestino() {
+        return destino;
+    }
+
+    /**
+     * @param destino the destino to set
+     */
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+    
+    public float calcularSubtotal()
+    {
+        float subtotal=0;
+        
+        if(tipoBoleto==1)
+            subtotal=precio;
+        else if(tipoBoleto==2)
+            subtotal = (float) (precio+(precio*0.8));
+        
+        return subtotal;
+    }
+    
+    public float calcularImpuesto()
+    {
+        float sub, impuesto;
+        
+        sub = calcularSubtotal();
+        impuesto = (float) (sub*0.16);
+        
+        return impuesto;
+    }
+    
+    public float calcularDescuento(int edad)
+    {
+        float descuento=0, sub;
+        
+        sub = calcularSubtotal();
+        if(edad>60)
+        {
+            descuento = sub/2;
+        }
+        
+        return descuento;
+    }
+    
 }
